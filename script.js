@@ -38,11 +38,11 @@ function draw() {
 
 // Iniciar o jogo
 function start() {
-    if (keyIsDown(32)) {
+    if (xVeloBola ==0 && keyIsDown(32)) {
         xVeloBola = 5;
         yVeloBola = 3.5;
     }
-    if (keyIsDown(13)) {
+    if (xVeloBola ==0 && keyIsDown(13)) {
         xVeloBola = -5;
         yVeloBola = -3.5;
     }
@@ -146,10 +146,10 @@ function coliBall() {
 
 // Marcação de ponto
 function marcPonto(){
-    if(xPosiBola - 5 > widthCanva){
+    if(xPosiBola - raioBola > widthCanva - 3){
         poinPlay1 = poinPlay1 + 1;
     }
-    if (xPosiBola + 5 < 0){
+    if (xPosiBola + raioBola < 3){
         poinPlay2 = poinPlay2 + 1;
     }
 }
