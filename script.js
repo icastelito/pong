@@ -1,16 +1,16 @@
 // Características da bola
-let xPosiBola = 500, yPosiBola = 250, diaBola = 25;
-let raioBola = diaBola / 2;
+var xPosiBola = 500, yPosiBola = 250, diaBola = 20;
+var raioBola = diaBola / 2;
 // Características da movimentação da bola
-let xVeloBola = 0, yVeloBola = 0;
+var xVeloBola = 0, yVeloBola = 0;
 // Características da Quadra
-let widthCanva = 1000, heightCanva = 500;
+const widthCanva = 1000, heightCanva = 500;
 //características da Raquete 1
-let xPosiRacketOne = 3, yPosiRacketOne = 220, widthRacketOne = 10, heightRacketOne = 60;
+var xPosiRacketOne = 3, yPosiRacketOne = 220, widthRacketOne = 10, heightRacketOne = 60;
 // caracteristicas da Raquete 2
-let xPosiRacketTwo = 987, yPosiRacketTwo = 220, widthRacketTwo = 10, heightRacketTwo = 60;
+var xPosiRacketTwo = 987, yPosiRacketTwo = 220, widthRacketTwo = 10, heightRacketTwo = 60;
 // Placar
-let poinPlay1 = 0, poinPlay2 = 0;
+var poinPlay1 = 0, poinPlay2 = 0;
 
 function setup() {
     createCanvas(widthCanva, heightCanva);
@@ -19,8 +19,9 @@ function setup() {
 function draw() {
     background(150);
     showDetails();
-    showBall();
     moviBall();
+    showBall();
+    marcPonto();
     coliBall();
     player1();
     player2();
@@ -29,13 +30,21 @@ function draw() {
     coliPlayer1();
     coliPlayer2();
     placar();
-    marcPonto();
     start();
     coliSidePlayer1();
     coliSidePlayer2();
     
 }
 
+// Marcação de ponto
+function marcPonto(){
+    if(xPosiBola - 10 > widthCanva){
+        poinPlay1 = poinPlay1 + 1;
+    }
+    if (xPosiBola + 10 < 0){
+        poinPlay2 = poinPlay2 + 1;
+    }
+}
 // Iniciar o jogo
 function start() {
     if (xVeloBola ==0 && keyIsDown(32)) {
@@ -134,23 +143,12 @@ function coliBall() {
     if (xPosiBola - raioBola > widthCanva || xPosiBola + raioBola < 0) {
         xPosiBola = widthCanva / 2;
         yPosiBola = heightCanva / 2;
-        xVeloBola = 0 * -1;
-        yVeloBola = 0 * -1;
+        xVeloBola = 0;
+        yVeloBola = 0;
     }
-
 
     if (yPosiBola + raioBola > height || yPosiBola - raioBola < 0) {
         yVeloBola = yVeloBola * -1;
-    }
-}
-
-// Marcação de ponto
-function marcPonto(){
-    if(xPosiBola - raioBola > widthCanva - 3){
-        poinPlay1 = poinPlay1 + 1;
-    }
-    if (xPosiBola + raioBola < 3){
-        poinPlay2 = poinPlay2 + 1;
     }
 }
 
